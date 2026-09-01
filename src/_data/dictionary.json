@@ -1,0 +1,16 @@
+{
+  "hero": {
+    "primaryCta": {
+      "name": "View the Cryptid",
+      "url": "#fursona"
+    },
+    "secondaryCta": {
+      "name": "Get in Touch",
+      "url": "#contact"
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "builtWith": "Built with <span class=\"text-sky-500 text-xl\" aria-label=\"love\">♥</span>, 11ty, Tailwind CSS, <a href=\"https://github.com/learnwithgurpreet/11ty-innovative-intro\" class=\"text-sky-500 hover:text-sky-800\">11ty-innovative-intro</a> and <span class= \"text-xl\">WITHOUT ANY</span> help from LLM's."
+  }
+}

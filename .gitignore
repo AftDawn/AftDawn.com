@@ -141,3 +141,9 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# 11ty files
+_site
+
+# VSCode Stuff
+.vscode

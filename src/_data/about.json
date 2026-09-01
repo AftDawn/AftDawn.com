@@ -1,0 +1,42 @@
+{
+  "title": "About Me",
+  "code": [
+    {
+      "label": "Host",
+      "value": "aftdawn@AftDawn-Webber-11ty"
+    },
+    {
+      "label": "Distro",
+      "value": "Arch Linux"
+    },
+    {
+      "label": "DE",
+      "value": "KDE Plasma"
+    },
+    {
+      "label": "WM",
+      "value": "kwin_wayland_wr (Wayland)"
+    },
+    {
+      "label": "Shell",
+      "value": "fish"
+    },
+    {
+      "label": "CPU",
+      "value": "AMD Ryzen 7 5700G"
+    },
+    {
+      "label": "Memory",
+      "value": "32 GB"
+    },
+    {
+      "label": "GPU",
+      "value": "AMD Radeon RX 9060 XT"
+    },
+    {
+      "label": "Custom",
+      "value": "Powered by: Amphimorpho Retrovirus, Autism, ADHD and NO AI or LLM's"
+    }
+  ],
+  "textHtml": "Hey there! Name's AftDawn. <br/><br/> I'm a Tassie based Cryptid specializing in... not a whole lot. <br><br/>I'm Alterhuman and consider myself to be a shapeshifting 6 legged <a class=\"text-sky-500 hover:text-sky-800\" href=\"#fursona\">Creature</a> that happens to be in the form of a Human when in public, I am frequently found in the social VR platform <a class=\"text-sky-500 hover:text-sky-800\" href=\"https://resonite.com/\">Resonite</a><br><br/>I love the funny penguin flavoured OS"
+}

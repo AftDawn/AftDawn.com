@@ -1,0 +1,36 @@
+<!-- Fursona Section -->
+<section id="fursona" class="py-20 border-t border-border-light dark:border-border-dark">
+  <div class="grid md:grid-cols-2 gap-10 items-start">
+    <div>
+      <h2 class="text-3xl font-bold mb-4">{{ fursona.title }}</h2>
+      <p class="text-muted-foreground-light dark:text-muted-foreground-dark mb-4 whitespace-pre-line" id="fursona-slideshow-description"></p>
+    </div>
+    <div id="fursona-slideshow" class="relative mx-auto max-w-[1000px]">
+
+    {% for slide in fursona.slides %}
+      <div class="slideshow-slides animate-[fade_1.5s_ease]">
+        <div class="absolute top-0 px-3 py-2 text-xs text-gray-100 bg-black/75 rounded-lg">
+          {{ loop.index }} / {{ fursona.slides | length }}
+        </div>
+        {% image slide.image, slide.imageName, "w-full max-h-[70vh] object-contain align-middle rounded-lg" %}
+        <div class="absolute bottom-8 w-full px-3 py-2 text-center text-[15px] text-gray-100 rounded-lg bg-black/75">
+          {{ slide.imageName | safe }}
+        </div>
+      </div>
+    {% endfor %}
+
+    <button class="prev absolute left-0 top-1/2 -mt-[22px] cursor-pointer rounded-lg border-0 bg-black/50 px-4 py-4 text-lg font-bold text-white transition duration-500 ease-in-out select-none hover:bg-black/75" onclick="plusSlides('fursona-slideshow', -1)">
+      ❮
+    </button>
+
+    <button class="next absolute right-0 top-1/2 -mt-[22px] cursor-pointer rounded-lg border-0 bg-black/50 px-4 py-4 text-lg font-bold text-white transition duration-500 ease-in-out select-none hover:bg-black/75" onclick="plusSlides('fursona-slideshow', 1)">
+      ❯
+    </button>
+
+    <div class="mt-2 text-center">
+      {% for slide in fursona.slides %}
+        <span class="slideshow-dot inline-block h-[15px] w-[15px] cursor-pointer rounded-full bg-gray-700 mx-[2px] transition duration-500 hover:bg-gray-500" onclick="currentSlide('fursona-slideshow', {{ loop.index }})"></span>
+      {% endfor %}
+    </div>
+  </div>
+</section>
