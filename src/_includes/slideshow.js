@@ -1,6 +1,6 @@
 const slideIndexes = {
-"fursona-slideshow": 1,
-"character-slideshow": 2
+"fursona-slideshow": 6,
+"character-slideshow": 1
 };
 
 const ACTIVE_DOT = "bg-sky-400";
