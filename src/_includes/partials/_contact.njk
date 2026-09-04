@@ -1,16 +1,44 @@
 <!-- Contact Section -->
 <section id="contact" class="py-20 border-t border-border-light dark:border-border-dark text-center">
-  <h2 class="text-3xl font-bold mb-4">{{ contact.title }}</h2>
-  <p class="text-muted-foreground-light dark:text-muted-foreground-dark mb-8 mx-auto max-w-lg">
-    {{ contact.subTitle }}
-  </p>
-  <div class="flex justify-center gap-6">
-    {% for item in contact.social %}
-      <a aria-label="{{ item.name }}" href="{{ item.url }}" rel="me" target="_blank" class="inline-flex w-12 h-12 justify-center items-center ml-2 rounded-full highlight text-muted-foreground-light dark:text-muted-foreground-dark hover:opacity-80 transition-opacity">
-        {% if item.icon %}
-          {{ item.icon | safe }}
-        {% endif %}
-      </a>
-    {% endfor %}
+  <div class="grid md:grid-cols-2 gap-10 items-start">
+    <div>
+      <h2 class="text-3xl font-bold mb-4">{{ contact.title }}</h2>
+      <p class="text-muted-foreground-light dark:text-muted-foreground-dark mb-8 mx-auto max-w-lg">
+        {{ contact.subTitle }}
+      </p>
+      <div class="flex justify-center gap-6">
+        {% for item in contact.social %}
+          <div>
+            <p class="justify-evenly ml-2 text-muted-foreground-light dark:text-muted-foreground-dark">{{ item.name }}</p>
+            <a aria-label="{{ item.name }}" href="{{ item.url }}" rel="me" target="_blank" class="inline-flex w-12 h-12 justify-center items-center ml-2 rounded-full highlight text-muted-foreground-light dark:text-muted-foreground-dark hover:opacity-80 transition-opacity">
+              {% if item.icon %}
+                {{ item.icon | safe }}
+              {% endif %}
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+      <div>
+        <h2 class="text-3xl font-bold mb-4">Buttons</h2>
+        <p class="text-muted-foreground-light dark:text-muted-foreground-dark mb-6 mx-auto max-w-lg">Have an 88x31 in your own<code class="inline-block bg-muted-light dark:bg-muted-dark rounded-lg px-2 py-1 text-sm">.well-known/button.json</code>and want to show it off here? Get in touch!</p>
+        <a href="https://AftDawn.com" target="_blank" rel="noopener noreferrer">
+          <img src="{{ button.buttons[0].uri }}" alt="{{ button.buttons[0].alt }}" width="88" height="31" loading="lazy" class="mx-auto mb-4">
+        </a>
+        <div class="flex flex-wrap justify-center gap-2">
+          {# {% button "", 0 %} #}
+      </div>
+      <div class="inline-block bg-muted-light dark:bg-muted-dark rounded-lg p-10 overflow-auto m-6" aria-hidden="true">
+        <div class="text-sm text-muted-foreground-light dark:text-muted-foreground-dark">
+          <code class="font-['MesloLGS_NF']">
+            <a class="text-sky-700 dark:text-sky-500 hover:text-sky-800" href="https://noodle-r.ing">Amphimorpho Webring</a>
+            <br/>
+            <a class="text-sky-500 hover:text-sky-800" href="https://noodle-r.ing/aftdawn/prev">&lt; Prev</a>
+            ·
+            <a class="text-sky-500 hover:text-sky-800" href="https://noodle-r.ing/aftdawn/next">Next &gt;</a>
+          </code>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

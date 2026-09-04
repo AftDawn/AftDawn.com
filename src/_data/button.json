@@ -1,0 +1,13 @@
+{
+	"default": "0",
+	"buttons": [
+		{
+			"uri": "/assets/images/88x31/88x31-main.png",
+			"alt": "AftDawn.com, a silly personal static website",
+            "sha256": "4bbece6dca4cc5f1d581f08f5c983726a177dbd76afe179628d48fb1f386b263",
+			"colorScheme": "dark",
+			"animations": "none",
+            "contrast": "standard"
+		}
+	]
+}

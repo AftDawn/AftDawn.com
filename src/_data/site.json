@@ -1,9 +1,8 @@
 {
-  "name": "11ty-innovative-intro",
+  "name": "AftDawn the Amphimorpho's Personal Website",
   "shortName": "Aft",
   "url": "https://AftDawn.com",
   "canonical": "https://AftDawn.com",
-  "googleSiteVerification": "google-site-verification-code",
   "lang": "en",
   "locale": "en_AU",
   "title": "AftDawn - Local Biohazard",
@@ -13,19 +12,19 @@
   "mainNavigation": [
     {
       "name": "About",
-      "url": "#about"
+      "url": "/#about"
     },
     {
       "name": "Fursona",
-      "url": "#fursona"
+      "url": "/#fursona"
     },
     {
       "name": "Characters",
-      "url": "#character"
+      "url": "/#character"
     },
     {
       "name": "Contact",
-      "url": "#contact"
+      "url": "/#contact"
     }
   ]
 }

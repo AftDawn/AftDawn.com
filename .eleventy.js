@@ -5,6 +5,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
   eleventyConfig.addPassthroughCopy("src/fonts");
   eleventyConfig.addPassthroughCopy("CNAME");
+  eleventyConfig.addPassthroughCopy("src/assets/images/88x31");
   eleventyConfig.addNunjucksAsyncFilter('jsmin', minifyJs);
 
   eleventyConfig.addNunjucksAsyncShortcode("image", async function (src, alt, className = "") {
@@ -33,6 +34,38 @@ module.exports = function (eleventyConfig) {
     });
 
     return metadata.png[0].url;
+  });
+
+  const buttonCache = new Map();
+
+  eleventyConfig.addNunjucksAsyncShortcode("button", async function (url, index) {
+    let data = buttonCache.get(url);
+
+    if (!data) {
+      const response = await fetch(url + "/.well-known/button.json");
+
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch button list: ${response.status} ${url}`
+        );
+      }
+
+      data = await response.json();
+
+      buttonCache.set(url, data);
+    }
+
+    const button = data.buttons[index];
+
+    if (!button) {
+      throw new Error(`A 88x31 button does not exist at index "${index}" from website "${url}"`);
+    }
+
+    return `
+      <a href="${button.link}" target="_blank" rel="noopener noreferrer">
+        <img src="${button.uri}" alt="${button.alt}" width="88" height="31" loading="lazy">
+      </a>
+    `;
   });
 
   return {

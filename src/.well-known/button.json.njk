@@ -1,0 +1,22 @@
+---
+permalink: /.well-known/button.json
+---
+
+{
+  "$schema": "https://codeberg.org/LunarEclipse/well-known-button/raw/branch/main/drafts/button-2024-06.schema.json",
+  "default": "{{ button.default }}",
+  "buttons": [
+    {% for button in button.buttons %}
+    {
+      "id": "{{ loop.index0 }}",
+      "uri": "https://AftDawn.com{{ button.uri }}",
+      "alt": "{{ button.alt }}",
+      "link": "https://AftDawn.com",
+      "sha256": "{{ button.sha256 }}",
+      "colorScheme": "{{ button.colorScheme }}",
+      "animations": "{{ button.animations }}",
+      "contrast": "{{ button.contrast }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}

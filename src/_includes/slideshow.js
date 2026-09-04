@@ -1,5 +1,5 @@
 const slideIndexes = {
-"fursona-slideshow": 6,
+"fursona-slideshow": 1,
 "character-slideshow": 1
 };
 
