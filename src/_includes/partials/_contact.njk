@@ -21,12 +21,15 @@
     </div>
       <div>
         <h2 class="text-3xl font-bold mb-4">Buttons</h2>
-        <p class="text-muted-foreground-light dark:text-muted-foreground-dark mb-6 mx-auto max-w-lg">Have an 88x31 in your own<code class="inline-block bg-muted-light dark:bg-muted-dark rounded-lg px-2 py-1 text-sm">.well-known/button.json</code>and want to show it off here? Get in touch!</p>
+        <p class="text-muted-foreground-light dark:text-muted-foreground-dark mb-6 mx-auto max-w-lg">Have an 88x31 button in your own<code class="inline-block bg-muted-light dark:bg-muted-dark rounded-lg px-2 py-1 text-sm">.well-known/button.json</code> or have a standalone .gif/.png and want to show it off here?<br/>Get in touch!</p>
         <a href="https://AftDawn.com" target="_blank" rel="noopener noreferrer">
           <img src="{{ button.buttons[0].uri }}" alt="{{ button.buttons[0].alt }}" width="88" height="31" loading="lazy" class="mx-auto mb-4">
         </a>
         <div class="flex flex-wrap justify-center gap-2">
-          {# {% button "", 0 %} #}
+          {% wellKnownButton "beeps.website", 0 %}
+          {% simpleSelfHostedButton "tuxedodragon.art", "tuxedodragon 88x31.gif", "A 88 by 31 button linking to TuxedoDragon's Shapeshifter Shenanigans" %}
+          {% simpleSelfHostedButton "www.unix.dog/~yosh", "img/buttons/yosh.png", "A 88 by 31 button linking to Yosh's Website" %}
+          {% simpleButton "https://resonite.com", "https://www.unix.dog/~yosh/img/buttons/resonite.png", "A 88 by 31 button linking to Resonite" %}
       </div>
       <div class="inline-block bg-muted-light dark:bg-muted-dark rounded-lg p-10 overflow-auto m-6" aria-hidden="true">
         <div class="text-sm text-muted-foreground-light dark:text-muted-foreground-dark">

@@ -38,11 +38,19 @@ module.exports = function (eleventyConfig) {
 
   const buttonCache = new Map();
 
-  eleventyConfig.addNunjucksAsyncShortcode("button", async function (url, index) {
+  function generateButton(link, imagePath, alt) {
+    return `
+      <a href="${link}" target="_blank" rel="noopener noreferrer">
+        <img src="${imagePath}" alt="${alt}" width="88" height="31" loading="lazy">
+      </a>
+    `;
+  }
+
+  eleventyConfig.addNunjucksAsyncShortcode("wellKnownButton", async function (url, index) {
     let data = buttonCache.get(url);
 
     if (!data) {
-      const response = await fetch(url + "/.well-known/button.json");
+      const response = await fetch("https://" + url + "/.well-known/button.json");
 
       if (!response.ok) {
         throw new Error(
@@ -61,11 +69,15 @@ module.exports = function (eleventyConfig) {
       throw new Error(`A 88x31 button does not exist at index "${index}" from website "${url}"`);
     }
 
-    return `
-      <a href="${button.link}" target="_blank" rel="noopener noreferrer">
-        <img src="${button.uri}" alt="${button.alt}" width="88" height="31" loading="lazy">
-      </a>
-    `;
+    return generateButton(button.link, button.uri, button.alt);
+  });
+
+  eleventyConfig.addNunjucksShortcode("simpleSelfHostedButton", function (link, imagePath, alt) {
+    return generateButton(`https://${link}`, `https://${link}/${imagePath}`, alt);
+  });
+
+  eleventyConfig.addNunjucksShortcode("simpleButton", function (link, imagePath, alt) {
+    return generateButton(link, imagePath, alt);
   });
 
   return {
