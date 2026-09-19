@@ -3,9 +3,10 @@ const Image = require("@11ty/eleventy-img").default;
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
-  eleventyConfig.addPassthroughCopy("src/fonts");
+  eleventyConfig.addPassthroughCopy("src/assets/fonts");
   eleventyConfig.addPassthroughCopy("CNAME");
   eleventyConfig.addPassthroughCopy("src/assets/images/88x31");
+  eleventyConfig.addPassthroughCopy("src/robots.txt")
   eleventyConfig.addNunjucksAsyncFilter('jsmin', minifyJs);
 
   eleventyConfig.addNunjucksAsyncShortcode("image", async function (src, alt, className = "") {
