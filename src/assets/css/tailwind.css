@@ -1,11 +1,11 @@
 @import 'tailwindcss';
 
 @font-face {
-  font-family: MesloLGS;
+  font-family: MesloLGS_NF;
   font-style: normal;
   font-weight: normal;
   font-display: swap;
-  src: url("/fonts/mesloLGS_NF_regular.woff2") format("woff2");
+  src: url("/assets/fonts/mesloLGS_NF_regular.woff2") format("woff2");
 }
 
 @custom-variant dark (@media (prefers-color-scheme: dark));
