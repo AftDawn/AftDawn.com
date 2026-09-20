@@ -1,7 +1,6 @@
 const { minifyJs } = require("./11ty");
-const Image = require("@11ty/eleventy-img").default;
 const { eleventyImageTransformPlugin } = require("@11ty/eleventy-img");
-const { cp } = require("node:fs/promises");
+const { cp, mkdir } = require("node:fs/promises");
 const EleventyPluginRobotsTxt = require("eleventy-plugin-robotstxt");
 const faviconsPlugin = require("eleventy-plugin-gen-favicons");
 const site = require("./src/_data/site.json");
@@ -48,6 +47,8 @@ module.exports = function (eleventyConfig) {
       { recursive: true }
     );
   });
+
+  eleventyConfig.on("eleventy.before", async () => { await mkdir(".cache/favicon", { recursive: true }); await mkdir(".cache/images", { recursive: true }); });
 
   eleventyConfig.addPlugin(faviconsPlugin, {'outputDir': './.cache/favicon', 'manifestData': {'name': site.name}});
 
