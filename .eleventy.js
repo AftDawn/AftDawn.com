@@ -53,7 +53,7 @@ module.exports = function (eleventyConfig) {
   function generateButton(link, imagePath, alt) {
     return `
       <a href="${link}" target="_blank" rel="noopener noreferrer">
-        <img src="${imagePath}" alt="${alt}" width="88" height="31" loading="lazy" >
+        <img src="${imagePath}" alt="${alt}" width="88" height="31" loading="lazy" eleventy:ignore>
       </a>
     `;
   }
