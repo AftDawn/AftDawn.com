@@ -2,15 +2,27 @@ const { minifyJs } = require("./11ty");
 const Image = require("@11ty/eleventy-img").default;
 const { eleventyImageTransformPlugin } = require("@11ty/eleventy-img");
 const { cp } = require("node:fs/promises");
+const EleventyPluginRobotsTxt = require("eleventy-plugin-robotstxt");
+const faviconsPlugin = require("eleventy-plugin-gen-favicons");
+const site = require("./src/_data/site.json");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
   eleventyConfig.addPassthroughCopy("src/assets/fonts");
   eleventyConfig.addPassthroughCopy("CNAME");
   eleventyConfig.addPassthroughCopy("src/assets/images/88x31");
-  eleventyConfig.addPassthroughCopy("src/robots.txt")
   eleventyConfig.addNunjucksAsyncFilter('jsmin', minifyJs);
+
+  eleventyConfig.addPlugin(EleventyPluginRobotsTxt, {
+    rules: new Map([["*", [{ allow: "/" }]]]),
+    shouldBlockAIRobots: true,
+  })
   
+  eleventyConfig.addNunjucksShortcode("socialHead", function (property, content) {
+    return `
+      <meta property=${property} content=${content}>
+    `
+  });
 
   eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
     formats: "webp",
@@ -31,22 +43,24 @@ module.exports = function (eleventyConfig) {
       { recursive: true }
     );
     await cp(
-      ".cache/favicons",
-      "_site/assets/images/favicons",
+      ".cache/favicon",
+      "_site/",
       { recursive: true }
     );
   });
 
-  eleventyConfig.addNunjucksAsyncShortcode("favicon", async function (src, size) {
-    const metadata = await Image("src/assets/images/favicons/"+src, {
-      widths: [size],
-      formats: ["png"],
-      outputDir: "./.cache/favicons/",
-      urlPath: "/assets/images/favicons/"
-    });
+  eleventyConfig.addPlugin(faviconsPlugin, {'outputDir': './.cache/favicon', 'manifestData': {'name': site.name}});
 
-    return metadata.png[0].url;
-  });
+  // eleventyConfig.addNunjucksAsyncShortcode("favicon", async function (src, size) {
+  //   const metadata = await Image("src/assets/images/favicons/"+src, {
+  //     widths: [size],
+  //     formats: ["png"],
+  //     outputDir: "./.cache/favicons/",
+  //     urlPath: "/assets/images/favicons/"
+  //   });
+
+  //   return metadata.png[0].url;
+  // });
 
   const buttonCache = new Map();
 

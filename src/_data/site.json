@@ -6,7 +6,9 @@
   "lang": "en",
   "locale": "en_AU",
   "title": "AftDawn - Local Biohazard",
-  "favicon": "Amphimorpho Aft Headshot NO BG (AftDawn).png",
+  "description": "AftDawn's personal corner of the web.",
+  "keywords": "furry, amphimorpho, protogen, avali, personal site, personal website",
+  "favicon": "src/assets/images/favicon/Amphimorpho Aft.svg",
   "themeColor": "#72bfe9",
   "backgroundColor": "#3d66b5",
   "mainNavigation": [
