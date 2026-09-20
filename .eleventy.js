@@ -1,5 +1,7 @@
 const { minifyJs } = require("./11ty");
 const Image = require("@11ty/eleventy-img").default;
+const { eleventyImageTransformPlugin } = require("@11ty/eleventy-img");
+const { cp } = require("node:fs/promises");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
@@ -8,29 +10,38 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets/images/88x31");
   eleventyConfig.addPassthroughCopy("src/robots.txt")
   eleventyConfig.addNunjucksAsyncFilter('jsmin', minifyJs);
+  
 
-  eleventyConfig.addNunjucksAsyncShortcode("image", async function (src, alt, className = "") {
-    const metadata = await Image(src, {
-      widths: [600, 1000, 1400, 2000],
-      formats: ["avif", "webp"],
-      outputDir: "./_site/assets/images/optimized/",
-      urlPath: "/assets/images/optimized/",
-    });
-
-    return Image.generateHTML(metadata, {
-      alt: alt,
+  eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+    formats: "webp",
+    outputDir: "./.cache/images/",
+    urlPath: "/assets/images/",
+    defaultAttributes: {
       loading: "lazy",
-      decoding: "async",
-      class: className,
-      sizes: "(max-width: 768px) 100vw, 50vw",
-    });
+      decoding: "async"
+    },
+    useCache: true
+  });
+
+  // stupid simple .cache thingy
+  eleventyConfig.on("eleventy.after", async () => {
+    await cp(
+      ".cache/images",
+      "_site/assets/images",
+      { recursive: true }
+    );
+    await cp(
+      ".cache/favicons",
+      "_site/assets/images/favicons",
+      { recursive: true }
+    );
   });
 
   eleventyConfig.addNunjucksAsyncShortcode("favicon", async function (src, size) {
     const metadata = await Image("src/assets/images/favicons/"+src, {
       widths: [size],
       formats: ["png"],
-      outputDir: "./_site/assets/images/favicons/",
+      outputDir: "./.cache/favicons/",
       urlPath: "/assets/images/favicons/"
     });
 
@@ -42,7 +53,7 @@ module.exports = function (eleventyConfig) {
   function generateButton(link, imagePath, alt) {
     return `
       <a href="${link}" target="_blank" rel="noopener noreferrer">
-        <img src="${imagePath}" alt="${alt}" width="88" height="31" loading="lazy">
+        <img src="${imagePath}" alt="${alt}" width="88" height="31" loading="lazy" >
       </a>
     `;
   }

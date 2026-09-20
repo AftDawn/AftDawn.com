@@ -59,13 +59,13 @@ await page.goto(`http://127.0.0.1:${PORT}/og-preview.html`, {
 });
 
 await page.screenshot({
-  path: path.join(SITE_DIR, "images", "og-preview.png"),
+  path: SITE_DIR + "/assets/images/og-preview.png",
   type: "png",
 });
 
 await browser.close();
 server.close();
 
-console.log("Generated _site/images/og-preview.png");
+console.log("Generated _site/assets/images/og-preview.png");
 
 await rm("_site/og-preview.html", { force: true })

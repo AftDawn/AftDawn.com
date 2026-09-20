@@ -11,7 +11,7 @@
           <div class="absolute top-0 px-3 py-2 text-xs text-gray-100 bg-black/75 rounded-lg">
             {{ loop.index }} / {{ fursona.slides | length }}
           </div>
-          {% image slide.image, slide.imageName, "w-full max-h-[70vh] object-contain align-middle rounded-lg" %}
+            <img src="{{ slide.image }}" alt="{{ slide.imageAlt }}" height="700" width="700" class="rounded-[0.55rem]">
           <div class="absolute bottom-8 w-full px-3 py-2 text-center text-[15px] text-gray-100 rounded-lg bg-black/75">
             {{ slide.imageName | safe }}
           </div>
